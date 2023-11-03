@@ -23,11 +23,12 @@ class User(AbstractUser):
     
     
     def save(self, *args, **kwargs):
-        last_username = User.objects.all().values_list('username', flat=True).last()       
-        if last_username: new_username = int(last_username) + 1
-        else: new_username = settings.USERID_BASE + 1
-        self.username = new_username
-        super(User, self).save(*args, **kwargs)
+        if not self.pk: 
+            last_username = User.objects.all().values_list('username', flat=True).last()       
+            if last_username: new_username = int(last_username) + 1
+            else: new_username = settings.USERID_BASE + 1
+            self.username = new_username
+            super(User, self).save(*args, **kwargs)
 
     def __str__(self):
         return str(self.username)

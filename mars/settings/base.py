@@ -13,13 +13,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent.parent
 SECRET_KEY = 'django-insecure-v$)f48%22o7r_!2o9nt05u)djo038*q!b^9dvb@659me$s-r&y'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 CORS_ALLOW_ALL_ORIGINS = True
-CORS_ALLOWED_ORIGINS = ['http://localhost:5173', 'http://127.0.0.1:8000', 'https://5174-nagarjunagangadh-titan-h373mvfxkwx.ws-us80.gitpod.io']
+# CORS_ALLOWED_ORIGINS = ['http://localhost:5173', 'http://127.0.0.1:8000', 'https://5174-nagarjunagangadh-titan-h373mvfxkwx.ws-us80.gitpod.io']
 
-CSRF_TRUSTED_ORIGINS = ['https://*.gitpod.io']
+# CSRF_TRUSTED_ORIGINS = ['https://*.gitpod.io']
 # Application definition
 
 
