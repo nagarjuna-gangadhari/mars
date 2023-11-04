@@ -18,7 +18,7 @@ class UserViewSet(viewsets.ViewSet):
     A simple ViewSet for listing or retrieving users.
     """
     
-    # permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.IsAuthenticated]
 
     def get(self, request):
         data = User.objects.filter(id=request.user.id).values('username', 'email')[0]

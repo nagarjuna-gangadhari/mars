@@ -1,13 +1,12 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import authenticate, login, logout, get_user_model
 from .forms import LoginForm
 from django.views.generic import View
-import json
-from django.http import JsonResponse
-
-from django.contrib.auth.models import User
 from rest_framework.validators import UniqueValidator
 from django.contrib.auth.password_validation import validate_password
+from .serializers import RegisterSerializer
+from rest_framework import generics, permissions
+User = get_user_model()
 
 class LoginPageView(View):
     template_name = 'accounts/login.html'
@@ -39,7 +38,13 @@ class LoginPageView(View):
         message = 'Invalid User Id or Password'
         return render(request, self.template_name, context={'message': message})
     
-    
+
+class RegisterView(generics.CreateAPIView):
+    queryset = User.objects.all()
+    permission_classes = (permissions.AllowAny,)
+    serializer_class = RegisterSerializer
+
+
 def logout_view(request):
     logout(request)
     return redirect('/')
